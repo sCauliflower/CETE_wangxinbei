@@ -1,0 +1,183 @@
+{
+  "scenario_id": "scene1_2_50_20",
+  "dim": [
+    50,
+    20
+  ],
+  "row_bounds": [
+    25,
+    45
+  ],
+  "row_change_points": [
+    14,
+    44
+  ],
+  "red_groups": [
+    {
+      "key": "A",
+      "uids": "R01-R25",
+      "n": 25,
+      "platform": "F-16C Blk 30 Falcon",
+      "weapon": "AIM-120C-6 AMRAAM P3I.2",
+      "Pk0": 0.95,
+      "Rmax_nm": 56.7
+    },
+    {
+      "key": "B",
+      "uids": "R26-R45",
+      "n": 20,
+      "platform": "F-14D Tomcat",
+      "weapon": "AIM-54C Phoenix",
+      "Pk0": 0.85,
+      "Rmax_nm": 99.4
+    },
+    {
+      "key": "C",
+      "uids": "R46-R50",
+      "n": 5,
+      "platform": "CG 56 San Jacinto [Ticonderoga Baseline 2]",
+      "weapon": "RIM-161A SM-3 NTW Blk I",
+      "Pk0": 0.85,
+      "Rmax_nm": 200.0
+    }
+  ],
+  "blue_classes": [
+    {
+      "key": "T1",
+      "n": 2,
+      "label": "预警指挥机",
+      "platform": "Sentry AEW.1 [E-3D]",
+      "v_mean": 103.758,
+      "p_mean_A": 0.0345,
+      "d_bar_nm": 57.43,
+      "flat": false,
+      "z_hat": 0.9306,
+      "z_theory": 1.0
+    },
+    {
+      "key": "T5",
+      "n": 3,
+      "label": "电子战飞机",
+      "platform": "EA-6B Prowler ICAP II Blk 82",
+      "v_mean": 85.684,
+      "p_mean_A": 0.2766,
+      "d_bar_nm": 42.73,
+      "flat": false,
+      "z_hat": 0.7298,
+      "z_theory": 0.9257
+    },
+    {
+      "key": "T4",
+      "n": 3,
+      "label": "轰炸机",
+      "platform": "B-1B Lancer",
+      "v_mean": 68.349,
+      "p_mean_A": 0.1764,
+      "d_bar_nm": 45.23,
+      "flat": false,
+      "z_hat": 0.5372,
+      "z_theory": 0.8875
+    },
+    {
+      "key": "T3",
+      "n": 4,
+      "label": "多用途战斗机",
+      "platform": "F-15E Strike Eagle",
+      "v_mean": 48.804,
+      "p_mean_A": 0.3633,
+      "d_bar_nm": 38.0,
+      "flat": false,
+      "z_hat": 0.32,
+      "z_theory": 0.7193
+    },
+    {
+      "key": "T2",
+      "n": 8,
+      "label": "无人机",
+      "platform": "RQ-1B Predator UAV",
+      "v_mean": 21.382,
+      "p_mean_A": 0.6639,
+      "d_bar_nm": 34.75,
+      "flat": false,
+      "z_hat": 0.0154,
+      "z_theory": 0.6031
+    }
+  ],
+  "grouping": {
+    "dp_segment_cost": 0.04427,
+    "kmeans_sse": 1.857,
+    "agreement": 1.0
+  },
+  "full_coverage_cols": [
+    "B12"
+  ],
+  "calibration": {
+    "mode": "hit_probability",
+    "scan": {
+      "hit": [
+        509,
+        529
+      ],
+      "damage": [
+        181,
+        529
+      ]
+    },
+    "rmse": 0.06972,
+    "rmse_valid": 0.09673,
+    "block_mean_max_err": 0.0,
+    "block_mean_max_err_full": 0.031925,
+    "p_exceed": 20,
+    "n_valid": 518,
+    "zero_cells": 471,
+    "zero_by_gate": 31,
+    "obs_conflict": 11,
+    "alpha": {
+      "A|T1": 0.7016,
+      "A|T5": 1.0706,
+      "A|T4": 1.0349,
+      "A|T3": 1.0365,
+      "A|T2": 1.0385,
+      "B|T1": 0.638,
+      "B|T5": 1.1746,
+      "B|T4": 0.9884,
+      "B|T3": 1.181,
+      "B|T2": 0.4787,
+      "C|T1": 0.8771,
+      "C|T5": 0.7503,
+      "C|T4": 0.4057,
+      "C|T3": 0.4497,
+      "C|T2": 0.1726
+    },
+    "alpha_min": 0.1726,
+    "alpha_max": 1.181,
+    "value_regression": {
+      "a": -94.28,
+      "b": 192.95,
+      "r2": 0.9726,
+      "v_min": 20,
+      "v_max": 110
+    }
+  },
+  "distance_stats": {
+    "red_center": [
+      -9.91,
+      0.91
+    ],
+    "blue_center": [
+      42.58,
+      0.63
+    ],
+    "center_gap_nm": 52.49,
+    "min": 32.95,
+    "mean": 52.67,
+    "max": 96.95
+  },
+  "nonzero_cells": 529,
+  "files": {
+    "card": "scene1_2_50_20_card.json",
+    "report_md": "scene1_2_50_20_场景想定报告.md",
+    "report_html": "scene1_2_50_20_场景想定报告.html",
+    "check": "P_V/闭环校验_scene1_2_50_20.md"
+  }
+}

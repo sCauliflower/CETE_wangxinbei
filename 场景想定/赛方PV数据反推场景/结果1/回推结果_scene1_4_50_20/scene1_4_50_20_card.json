@@ -1,0 +1,4774 @@
+{
+  "scenario_id": "scene1_4_50_20",
+  "schema_version": "2.0",
+  "seed": {
+    "source_file": "scene1_4_50_20.json",
+    "source_title": "—",
+    "source_setting": "—",
+    "source_year": "—",
+    "source_complexity": "—",
+    "source_difficulty": "—",
+    "source_db_version": "—",
+    "note": "输入仅为 P 矩阵与 v 向量，未提供原始 .scen 纯文本头部字段"
+  },
+  "meta": {
+    "name": "远海三层拦截：蓝方空中突击编队对红方海上防空圈（由 P/V 矩阵回推，50×20）",
+    "year": 2010,
+    "region": "西太平洋某开阔海域（示例重建）",
+    "period": "信息化条件下海上局部封锁与反封锁（示例重建）",
+    "sides": {
+      "red": "红方（防守方）",
+      "blue": "蓝方（进攻方）"
+    },
+    "sides_raw": "—",
+    "date_time": "—",
+    "location": "某开阔海域（示例重建）",
+    "playable_sides": "—",
+    "duration": "—",
+    "environment": {
+      "sea_state": "—",
+      "weather": "—",
+      "notes": "缺省取 1.00，不进入因子链"
+    },
+    "objective": {
+      "red": "以中距、远程、超远程三层拦截兵力守住海上编队防空圈，优先压制蓝方远距预警指挥节点，阻止突击编队进入有效投射距离。",
+      "blue": "以预警指挥与电子战节点引导，轰炸机与多用途战斗机为主攻、无人机群前出消耗，突破红方防空拦截并达成对海上编队的打击。"
+    },
+    "background_zh": "本想定由一份 50×20 的毁伤概率矩阵与 20 维目标价值向量回推重建：矩阵行呈 25/20/5 三段结构，对应红方中距、远程、超远程三层拦截兵力；列按价值与概率呈 1/1/1/6/11 五类结构，对应蓝方预警指挥、电子战、轰炸、多用途战斗机与无人机五类空中突击兵力。红方依托海上编队组织纵深防空，蓝方以多批次、多高度、分层距离的空中编队实施突防。叙述层（年代、地域、背景、任务意图）不在 P/V 矩阵内，属按编成代次与交战结构做的示例重建，非原始 CMO 场景正文译写；装备型号与国别字段仅为装备库条目属性，不代表本想定中的阵营归属。"
+  },
+  "provenance": {
+    "narrative": "rebuilt_from_pv_matrix（矩阵内无叙述层；按规范第 8 节第 3 条重建）",
+    "order_of_battle": "rebuilt_from_db：型号/DP/RCS/探测距离/挂载取自装备库；数量、阵位、机动战术档位、挂载数量为示例重建",
+    "probability_basis": "命中概率口径（fK≡1，fJ=fE=1）；按手册 4.1/6.1 反解 fR；分块适配系数 α 为 C 层标定项",
+    "value_basis": "v_min=10、v_max=100（由 v 极值取整）；权重取手册 5.1 缺省值；等效口径见闭环校验",
+    "grouping": {
+      "rows": "按 N 的 50%/40%/10% 比例先验定边界 [25, 45]；变点检测对照 [29, 45]",
+      "cols": "按 v 降序做动态规划最优 5 段分割（段内概率特征平方和最小）；与无监督聚类（k=5，SSE=0.43）的成对一致率 100.0%",
+      "dp_segment_cost": 0.00791
+    },
+    "limitations": [
+      "原始 .scen 私有压缩块不可得：标题、正文、地域、年代、难度、数据库版本等溯源字段无法读取",
+      "叙述层不在矩阵内，背景/任务/环境均为示例重建，不可唯一反推",
+      "fR 近距平坦段（ρ≤0.5）距离不唯一，阵位为按距离带构造的示例解",
+      "价值线性加权存在分量混叠，单个 v_j 不能分离 S_DP/R/G/Th",
+      "给定 P 的零格中含大量非射程门控掩膜（火力通道/弹药配额），不可由卡片参数唯一还原",
+      "机动评级到过载、fK 形状因子、fE 档位、价值权重与上下界均为 C 层待校准值",
+      "10 个场景共用同一套平台/武器编成模板；类别数量由各自矩阵的分组结果决定"
+    ]
+  },
+  "counts": {
+    "red": 50,
+    "blue": 20
+  },
+  "units": [
+    {
+      "uid": "R01",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 1.576,
+        "rel_y_nm": -4.02,
+        "alt_m": 10421.4
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R02",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 1.45,
+        "rel_y_nm": 1.219,
+        "alt_m": 10198.5
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R03",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 0.504,
+        "rel_y_nm": -5.309,
+        "alt_m": 10214.0
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R04",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 1.73,
+        "rel_y_nm": 4.625,
+        "alt_m": 9830.4
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R05",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 0.715,
+        "rel_y_nm": -1.48,
+        "alt_m": 9874.8
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R06",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 1.671,
+        "rel_y_nm": 5.262,
+        "alt_m": 8767.1
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R07",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 1.483,
+        "rel_y_nm": -5.193,
+        "alt_m": 8172.5
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R08",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 2.338,
+        "rel_y_nm": 2.958,
+        "alt_m": 8687.6
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R09",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 1.669,
+        "rel_y_nm": -1.323,
+        "alt_m": 8834.8
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R10",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 2.545,
+        "rel_y_nm": -0.402,
+        "alt_m": 8972.8
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R11",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 1.12,
+        "rel_y_nm": 1.536,
+        "alt_m": 9187.9
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R12",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 2.047,
+        "rel_y_nm": -4.012,
+        "alt_m": 9005.0
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R13",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 2.547,
+        "rel_y_nm": -4.538,
+        "alt_m": 8667.4
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R14",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 1.423,
+        "rel_y_nm": -4.915,
+        "alt_m": 9615.4
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R15",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 1.989,
+        "rel_y_nm": -2.165,
+        "alt_m": 9514.2
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R16",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 2.087,
+        "rel_y_nm": -4.912,
+        "alt_m": 9887.2
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R17",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 2.682,
+        "rel_y_nm": 0.358,
+        "alt_m": 8886.4
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R18",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 2.428,
+        "rel_y_nm": -2.84,
+        "alt_m": 9433.6
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R19",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 2.503,
+        "rel_y_nm": -1.337,
+        "alt_m": 8870.9
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R20",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 2.825,
+        "rel_y_nm": -4.63,
+        "alt_m": 8372.1
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R21",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 3.381,
+        "rel_y_nm": 1.968,
+        "alt_m": 9389.0
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R22",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 3.118,
+        "rel_y_nm": 3.798,
+        "alt_m": 10290.7
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R23",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 2.09,
+        "rel_y_nm": -5.418,
+        "alt_m": 9419.6
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R24",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 3.423,
+        "rel_y_nm": -2.994,
+        "alt_m": 9354.9
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R25",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 198,
+      "name": "F-16C Blk 30 Falcon",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 5,
+      "year": 2003,
+      "maneuver_g": 4.9,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "4.1dBsm",
+        "front_m2": 2.57
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 2.53,
+        "rel_y_nm": 4.102,
+        "alt_m": 8698.5
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "中距拦截层"
+    },
+    {
+      "uid": "R26",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -18.486,
+        "rel_y_nm": -4.691,
+        "alt_m": 9091.6
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R27",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -18.773,
+        "rel_y_nm": 5.615,
+        "alt_m": 9491.5
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R28",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -19.091,
+        "rel_y_nm": 2.052,
+        "alt_m": 9519.9
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R29",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -18.005,
+        "rel_y_nm": 4.795,
+        "alt_m": 9862.6
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R30",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -19.284,
+        "rel_y_nm": 4.365,
+        "alt_m": 9262.6
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R31",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -18.621,
+        "rel_y_nm": 0.761,
+        "alt_m": 9793.2
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R32",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -18.907,
+        "rel_y_nm": 3.229,
+        "alt_m": 10354.7
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R33",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -18.892,
+        "rel_y_nm": 3.409,
+        "alt_m": 9705.9
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R34",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -18.94,
+        "rel_y_nm": -3.192,
+        "alt_m": 11201.7
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R35",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -18.277,
+        "rel_y_nm": -0.309,
+        "alt_m": 9430.2
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R36",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -18.112,
+        "rel_y_nm": 5.028,
+        "alt_m": 10912.3
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R37",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -17.865,
+        "rel_y_nm": -2.491,
+        "alt_m": 10543.3
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R38",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -17.357,
+        "rel_y_nm": -5.989,
+        "alt_m": 9673.3
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R39",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -17.556,
+        "rel_y_nm": -0.406,
+        "alt_m": 10486.7
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R40",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -18.227,
+        "rel_y_nm": -5.711,
+        "alt_m": 9474.4
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R41",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -17.272,
+        "rel_y_nm": 3.945,
+        "alt_m": 10366.3
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R42",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -18.101,
+        "rel_y_nm": -4.77,
+        "alt_m": 9612.1
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R43",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -17.274,
+        "rel_y_nm": 5.177,
+        "alt_m": 11449.5
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R44",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -17.006,
+        "rel_y_nm": 4.45,
+        "alt_m": 11296.0
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R45",
+      "side": "red",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 416,
+      "name": "F-14D Tomcat",
+      "type": "战斗机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2004,
+      "maneuver_g": 4.5,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "9.6dBsm",
+        "front_m2": 9.12
+      },
+      "radar_max_nm": 180.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -17.567,
+        "rel_y_nm": 1.17,
+        "alt_m": 9591.1
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 1398,
+          "name": "AIM-54C Phoenix",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              2.0,
+              99.4
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-54C(WDU-29/B)61kg/135lbContinousRod",
+            "ContinuousRod": "21.35"
+          },
+          "resolved": true,
+          "qty": 4,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "远程拦截层"
+    },
+    {
+      "uid": "R46",
+      "side": "red",
+      "role": "surface_cg",
+      "kind": "ship",
+      "platform_id": 40,
+      "name": "CG 56 San Jacinto [Ticonderoga Baseline 2]",
+      "type": "CG-GuidedMissileCruiser",
+      "target_class": "large_surface",
+      "nation": "UnitedStates",
+      "dp": 1270,
+      "year": 1989,
+      "maneuver_g": null,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "29.7dBsm",
+        "front_m2": 933.25
+      },
+      "radar_max_nm": null,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -37.452,
+        "rel_y_nm": -0.305,
+        "alt_m": 0.0
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 906,
+          "name": "RIM-161A SM-3 NTW Blk I",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              4.0,
+              200.0
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "RIM-161ASM-3Kinetic",
+            "Armor-Piercing(AP)": "1"
+          },
+          "resolved": true,
+          "qty": 8,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "超远程舰载拦截层"
+    },
+    {
+      "uid": "R47",
+      "side": "red",
+      "role": "surface_cg",
+      "kind": "ship",
+      "platform_id": 40,
+      "name": "CG 56 San Jacinto [Ticonderoga Baseline 2]",
+      "type": "CG-GuidedMissileCruiser",
+      "target_class": "large_surface",
+      "nation": "UnitedStates",
+      "dp": 1270,
+      "year": 1989,
+      "maneuver_g": null,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "29.7dBsm",
+        "front_m2": 933.25
+      },
+      "radar_max_nm": null,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -37.296,
+        "rel_y_nm": 0.509,
+        "alt_m": 0.0
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 906,
+          "name": "RIM-161A SM-3 NTW Blk I",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              4.0,
+              200.0
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "RIM-161ASM-3Kinetic",
+            "Armor-Piercing(AP)": "1"
+          },
+          "resolved": true,
+          "qty": 8,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "超远程舰载拦截层"
+    },
+    {
+      "uid": "R48",
+      "side": "red",
+      "role": "surface_cg",
+      "kind": "ship",
+      "platform_id": 40,
+      "name": "CG 56 San Jacinto [Ticonderoga Baseline 2]",
+      "type": "CG-GuidedMissileCruiser",
+      "target_class": "large_surface",
+      "nation": "UnitedStates",
+      "dp": 1270,
+      "year": 1989,
+      "maneuver_g": null,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "29.7dBsm",
+        "front_m2": 933.25
+      },
+      "radar_max_nm": null,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -35.614,
+        "rel_y_nm": 2.328,
+        "alt_m": 0.0
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 906,
+          "name": "RIM-161A SM-3 NTW Blk I",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              4.0,
+              200.0
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "RIM-161ASM-3Kinetic",
+            "Armor-Piercing(AP)": "1"
+          },
+          "resolved": true,
+          "qty": 8,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "超远程舰载拦截层"
+    },
+    {
+      "uid": "R49",
+      "side": "red",
+      "role": "surface_cg",
+      "kind": "ship",
+      "platform_id": 40,
+      "name": "CG 56 San Jacinto [Ticonderoga Baseline 2]",
+      "type": "CG-GuidedMissileCruiser",
+      "target_class": "large_surface",
+      "nation": "UnitedStates",
+      "dp": 1270,
+      "year": 1989,
+      "maneuver_g": null,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "29.7dBsm",
+        "front_m2": 933.25
+      },
+      "radar_max_nm": null,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -36.214,
+        "rel_y_nm": -2.589,
+        "alt_m": 0.0
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 906,
+          "name": "RIM-161A SM-3 NTW Blk I",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              4.0,
+              200.0
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "RIM-161ASM-3Kinetic",
+            "Armor-Piercing(AP)": "1"
+          },
+          "resolved": true,
+          "qty": 8,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "超远程舰载拦截层"
+    },
+    {
+      "uid": "R50",
+      "side": "red",
+      "role": "surface_cg",
+      "kind": "ship",
+      "platform_id": 40,
+      "name": "CG 56 San Jacinto [Ticonderoga Baseline 2]",
+      "type": "CG-GuidedMissileCruiser",
+      "target_class": "large_surface",
+      "nation": "UnitedStates",
+      "dp": 1270,
+      "year": 1989,
+      "maneuver_g": null,
+      "maneuver_g_tactical": null,
+      "rcs_em_m2": {
+        "front_dbsm": "29.7dBsm",
+        "front_m2": 933.25
+      },
+      "radar_max_nm": null,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": -35.133,
+        "rel_y_nm": -3.018,
+        "alt_m": 0.0
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 906,
+          "name": "RIM-161A SM-3 NTW Blk I",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.85,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              4.0,
+              200.0
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "RIM-161ASM-3Kinetic",
+            "Armor-Piercing(AP)": "1"
+          },
+          "resolved": true,
+          "qty": 8,
+          "role": "intercept",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "超远程舰载拦截层"
+    },
+    {
+      "uid": "B02",
+      "side": "blue",
+      "role": "aew",
+      "kind": "aircraft",
+      "platform_id": 97,
+      "name": "Sentry AEW.1 [E-3D]",
+      "type": "空中预警机(AEW)",
+      "target_class": "aew",
+      "nation": "UnitedKingdom",
+      "dp": 20,
+      "year": 1991,
+      "maneuver_g": 1.0,
+      "maneuver_g_tactical": 2,
+      "rcs_em_m2": {
+        "front_dbsm": "18.8dBsm",
+        "front_m2": 75.86
+      },
+      "radar_max_nm": 350.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 59.095,
+        "rel_y_nm": -0.636,
+        "alt_m": 9193.2
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "预警指挥机"
+    },
+    {
+      "uid": "B20",
+      "side": "blue",
+      "role": "ew",
+      "kind": "aircraft",
+      "platform_id": 17,
+      "name": "EA-6B Prowler ICAP II Blk 82",
+      "type": "电子战飞机",
+      "target_class": "ew",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 1987,
+      "maneuver_g": 2.5,
+      "maneuver_g_tactical": 3,
+      "rcs_em_m2": {
+        "front_dbsm": "8.2dBsm",
+        "front_m2": 6.61
+      },
+      "radar_max_nm": 150.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 44.527,
+        "rel_y_nm": -3.522,
+        "alt_m": 7714.9
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 619,
+          "name": "AGM-88B HARM Blk IIIB",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.0,
+            "surface": 0.9,
+            "land": 0.9,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": null,
+            "surface": [
+              1.0,
+              70.0
+            ],
+            "land": [
+              1.0,
+              70.0
+            ],
+            "sub": null
+          },
+          "warhead": {
+            "1": "AGM-88A/B(WDU-21/B)65kg/143lbFrag[19kg/42lbPBXN-107]",
+            "HighExplosive(HE)Blast/Frag": "65"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "电子战飞机"
+    },
+    {
+      "uid": "B11",
+      "side": "blue",
+      "role": "bomber",
+      "kind": "aircraft",
+      "platform_id": 423,
+      "name": "B-1B Lancer",
+      "type": "轰炸机",
+      "target_class": "bomber",
+      "nation": "UnitedStates",
+      "dp": 20,
+      "year": 2006,
+      "maneuver_g": 2.0,
+      "maneuver_g_tactical": 3,
+      "rcs_em_m2": {
+        "front_dbsm": "12.2dBsm",
+        "front_m2": 16.6
+      },
+      "radar_max_nm": 160.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 47.055,
+        "rel_y_nm": 2.408,
+        "alt_m": 9703.9
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 351,
+          "name": "AGM-86C CALCM Blk IA",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.0,
+            "surface": 0.0,
+            "land": 0.95,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": null,
+            "surface": null,
+            "land": [
+              25.0,
+              500.0
+            ],
+            "sub": null
+          },
+          "warhead": {
+            "1": "AGM-86C1362kg/3000lbBlast/Frag(AFX-760)",
+            "HighExplosive(HE)Blast/Frag": "1362"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "轰炸机"
+    },
+    {
+      "uid": "B03",
+      "side": "blue",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 747,
+      "name": "F-15E Strike Eagle",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2001,
+      "maneuver_g": 4.0,
+      "maneuver_g_tactical": 7,
+      "rcs_em_m2": {
+        "front_dbsm": "7.6dBsm",
+        "front_m2": 5.75
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 43.642,
+        "rel_y_nm": 4.734,
+        "alt_m": 7262.9
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "多用途战斗机"
+    },
+    {
+      "uid": "B04",
+      "side": "blue",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 747,
+      "name": "F-15E Strike Eagle",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2001,
+      "maneuver_g": 4.0,
+      "maneuver_g_tactical": 7,
+      "rcs_em_m2": {
+        "front_dbsm": "7.6dBsm",
+        "front_m2": 5.75
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 43.983,
+        "rel_y_nm": 3.054,
+        "alt_m": 7681.3
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "多用途战斗机"
+    },
+    {
+      "uid": "B07",
+      "side": "blue",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 747,
+      "name": "F-15E Strike Eagle",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2001,
+      "maneuver_g": 4.0,
+      "maneuver_g_tactical": 7,
+      "rcs_em_m2": {
+        "front_dbsm": "7.6dBsm",
+        "front_m2": 5.75
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 43.686,
+        "rel_y_nm": 4.278,
+        "alt_m": 7619.7
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "多用途战斗机"
+    },
+    {
+      "uid": "B12",
+      "side": "blue",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 747,
+      "name": "F-15E Strike Eagle",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2001,
+      "maneuver_g": 4.0,
+      "maneuver_g_tactical": 7,
+      "rcs_em_m2": {
+        "front_dbsm": "7.6dBsm",
+        "front_m2": 5.75
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 44.015,
+        "rel_y_nm": 3.139,
+        "alt_m": 7329.7
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "多用途战斗机"
+    },
+    {
+      "uid": "B15",
+      "side": "blue",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 747,
+      "name": "F-15E Strike Eagle",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2001,
+      "maneuver_g": 4.0,
+      "maneuver_g_tactical": 7,
+      "rcs_em_m2": {
+        "front_dbsm": "7.6dBsm",
+        "front_m2": 5.75
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 44.395,
+        "rel_y_nm": 3.634,
+        "alt_m": 7620.8
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "多用途战斗机"
+    },
+    {
+      "uid": "B16",
+      "side": "blue",
+      "role": "fighter",
+      "kind": "aircraft",
+      "platform_id": 747,
+      "name": "F-15E Strike Eagle",
+      "type": "多用途战斗机/攻击机",
+      "target_class": "fighter",
+      "nation": "UnitedStates",
+      "dp": 10,
+      "year": 2001,
+      "maneuver_g": 4.0,
+      "maneuver_g_tactical": 7,
+      "rcs_em_m2": {
+        "front_dbsm": "7.6dBsm",
+        "front_m2": 5.75
+      },
+      "radar_max_nm": 120.0,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 43.256,
+        "rel_y_nm": 3.411,
+        "alt_m": 7627.5
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 52,
+          "name": "AIM-120C-6 AMRAAM P3I.2",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.95,
+            "surface": 0.0,
+            "land": 0.0,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": [
+              1.1,
+              56.7
+            ],
+            "surface": null,
+            "land": null,
+            "sub": null
+          },
+          "warhead": {
+            "1": "AIM-120C-5/6/7(WDU-41/B)18kg/40lbBlast-Frag[8.6kg/19lb]",
+            "Fragmentation": "6.3"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "多用途战斗机"
+    },
+    {
+      "uid": "B01",
+      "side": "blue",
+      "role": "uav",
+      "kind": "aircraft",
+      "platform_id": 545,
+      "name": "RQ-1B Predator UAV",
+      "type": "无人机(UAV)",
+      "target_class": "uav",
+      "nation": "UnitedStates",
+      "dp": 3,
+      "year": 2001,
+      "maneuver_g": 1.0,
+      "maneuver_g_tactical": 3,
+      "rcs_em_m2": {
+        "front_dbsm": "-2.1dBsm",
+        "front_m2": 0.6166
+      },
+      "radar_max_nm": null,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 40.632,
+        "rel_y_nm": 0.54,
+        "alt_m": 4287.2
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 87,
+          "name": "RB 17 Hellfire [AGM-114F]",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.0,
+            "surface": 0.9,
+            "land": 0.9,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": null,
+            "surface": [
+              0.2,
+              4.0
+            ],
+            "land": [
+              0.2,
+              4.0
+            ],
+            "sub": null
+          },
+          "warhead": {
+            "1": "AGM-114A8kg/17.6lbShapedCharge",
+            "HighExplosiveAnti-Tank(HEAT)ShapedCharge": "8"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "无人机"
+    },
+    {
+      "uid": "B05",
+      "side": "blue",
+      "role": "uav",
+      "kind": "aircraft",
+      "platform_id": 545,
+      "name": "RQ-1B Predator UAV",
+      "type": "无人机(UAV)",
+      "target_class": "uav",
+      "nation": "UnitedStates",
+      "dp": 3,
+      "year": 2001,
+      "maneuver_g": 1.0,
+      "maneuver_g_tactical": 3,
+      "rcs_em_m2": {
+        "front_dbsm": "-2.1dBsm",
+        "front_m2": 0.6166
+      },
+      "radar_max_nm": null,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 40.67,
+        "rel_y_nm": -0.781,
+        "alt_m": 4499.5
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 87,
+          "name": "RB 17 Hellfire [AGM-114F]",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.0,
+            "surface": 0.9,
+            "land": 0.9,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": null,
+            "surface": [
+              0.2,
+              4.0
+            ],
+            "land": [
+              0.2,
+              4.0
+            ],
+            "sub": null
+          },
+          "warhead": {
+            "1": "AGM-114A8kg/17.6lbShapedCharge",
+            "HighExplosiveAnti-Tank(HEAT)ShapedCharge": "8"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "无人机"
+    },
+    {
+      "uid": "B06",
+      "side": "blue",
+      "role": "uav",
+      "kind": "aircraft",
+      "platform_id": 545,
+      "name": "RQ-1B Predator UAV",
+      "type": "无人机(UAV)",
+      "target_class": "uav",
+      "nation": "UnitedStates",
+      "dp": 3,
+      "year": 2001,
+      "maneuver_g": 1.0,
+      "maneuver_g_tactical": 3,
+      "rcs_em_m2": {
+        "front_dbsm": "-2.1dBsm",
+        "front_m2": 0.6166
+      },
+      "radar_max_nm": null,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 41.755,
+        "rel_y_nm": -0.65,
+        "alt_m": 4447.3
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 87,
+          "name": "RB 17 Hellfire [AGM-114F]",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.0,
+            "surface": 0.9,
+            "land": 0.9,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": null,
+            "surface": [
+              0.2,
+              4.0
+            ],
+            "land": [
+              0.2,
+              4.0
+            ],
+            "sub": null
+          },
+          "warhead": {
+            "1": "AGM-114A8kg/17.6lbShapedCharge",
+            "HighExplosiveAnti-Tank(HEAT)ShapedCharge": "8"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "无人机"
+    },
+    {
+      "uid": "B08",
+      "side": "blue",
+      "role": "uav",
+      "kind": "aircraft",
+      "platform_id": 545,
+      "name": "RQ-1B Predator UAV",
+      "type": "无人机(UAV)",
+      "target_class": "uav",
+      "nation": "UnitedStates",
+      "dp": 3,
+      "year": 2001,
+      "maneuver_g": 1.0,
+      "maneuver_g_tactical": 3,
+      "rcs_em_m2": {
+        "front_dbsm": "-2.1dBsm",
+        "front_m2": 0.6166
+      },
+      "radar_max_nm": null,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 40.904,
+        "rel_y_nm": -0.978,
+        "alt_m": 4468.0
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 87,
+          "name": "RB 17 Hellfire [AGM-114F]",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.0,
+            "surface": 0.9,
+            "land": 0.9,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": null,
+            "surface": [
+              0.2,
+              4.0
+            ],
+            "land": [
+              0.2,
+              4.0
+            ],
+            "sub": null
+          },
+          "warhead": {
+            "1": "AGM-114A8kg/17.6lbShapedCharge",
+            "HighExplosiveAnti-Tank(HEAT)ShapedCharge": "8"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "无人机"
+    },
+    {
+      "uid": "B09",
+      "side": "blue",
+      "role": "uav",
+      "kind": "aircraft",
+      "platform_id": 545,
+      "name": "RQ-1B Predator UAV",
+      "type": "无人机(UAV)",
+      "target_class": "uav",
+      "nation": "UnitedStates",
+      "dp": 3,
+      "year": 2001,
+      "maneuver_g": 1.0,
+      "maneuver_g_tactical": 3,
+      "rcs_em_m2": {
+        "front_dbsm": "-2.1dBsm",
+        "front_m2": 0.6166
+      },
+      "radar_max_nm": null,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 41.047,
+        "rel_y_nm": 0.149,
+        "alt_m": 4428.1
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 87,
+          "name": "RB 17 Hellfire [AGM-114F]",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.0,
+            "surface": 0.9,
+            "land": 0.9,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": null,
+            "surface": [
+              0.2,
+              4.0
+            ],
+            "land": [
+              0.2,
+              4.0
+            ],
+            "sub": null
+          },
+          "warhead": {
+            "1": "AGM-114A8kg/17.6lbShapedCharge",
+            "HighExplosiveAnti-Tank(HEAT)ShapedCharge": "8"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "无人机"
+    },
+    {
+      "uid": "B10",
+      "side": "blue",
+      "role": "uav",
+      "kind": "aircraft",
+      "platform_id": 545,
+      "name": "RQ-1B Predator UAV",
+      "type": "无人机(UAV)",
+      "target_class": "uav",
+      "nation": "UnitedStates",
+      "dp": 3,
+      "year": 2001,
+      "maneuver_g": 1.0,
+      "maneuver_g_tactical": 3,
+      "rcs_em_m2": {
+        "front_dbsm": "-2.1dBsm",
+        "front_m2": 0.6166
+      },
+      "radar_max_nm": null,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 40.732,
+        "rel_y_nm": -0.252,
+        "alt_m": 4792.8
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 87,
+          "name": "RB 17 Hellfire [AGM-114F]",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.0,
+            "surface": 0.9,
+            "land": 0.9,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": null,
+            "surface": [
+              0.2,
+              4.0
+            ],
+            "land": [
+              0.2,
+              4.0
+            ],
+            "sub": null
+          },
+          "warhead": {
+            "1": "AGM-114A8kg/17.6lbShapedCharge",
+            "HighExplosiveAnti-Tank(HEAT)ShapedCharge": "8"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "无人机"
+    },
+    {
+      "uid": "B13",
+      "side": "blue",
+      "role": "uav",
+      "kind": "aircraft",
+      "platform_id": 545,
+      "name": "RQ-1B Predator UAV",
+      "type": "无人机(UAV)",
+      "target_class": "uav",
+      "nation": "UnitedStates",
+      "dp": 3,
+      "year": 2001,
+      "maneuver_g": 1.0,
+      "maneuver_g_tactical": 3,
+      "rcs_em_m2": {
+        "front_dbsm": "-2.1dBsm",
+        "front_m2": 0.6166
+      },
+      "radar_max_nm": null,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 40.42,
+        "rel_y_nm": 0.908,
+        "alt_m": 4501.5
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 87,
+          "name": "RB 17 Hellfire [AGM-114F]",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.0,
+            "surface": 0.9,
+            "land": 0.9,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": null,
+            "surface": [
+              0.2,
+              4.0
+            ],
+            "land": [
+              0.2,
+              4.0
+            ],
+            "sub": null
+          },
+          "warhead": {
+            "1": "AGM-114A8kg/17.6lbShapedCharge",
+            "HighExplosiveAnti-Tank(HEAT)ShapedCharge": "8"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "无人机"
+    },
+    {
+      "uid": "B14",
+      "side": "blue",
+      "role": "uav",
+      "kind": "aircraft",
+      "platform_id": 545,
+      "name": "RQ-1B Predator UAV",
+      "type": "无人机(UAV)",
+      "target_class": "uav",
+      "nation": "UnitedStates",
+      "dp": 3,
+      "year": 2001,
+      "maneuver_g": 1.0,
+      "maneuver_g_tactical": 3,
+      "rcs_em_m2": {
+        "front_dbsm": "-2.1dBsm",
+        "front_m2": 0.6166
+      },
+      "radar_max_nm": null,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 41.862,
+        "rel_y_nm": 0.52,
+        "alt_m": 4572.2
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 87,
+          "name": "RB 17 Hellfire [AGM-114F]",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.0,
+            "surface": 0.9,
+            "land": 0.9,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": null,
+            "surface": [
+              0.2,
+              4.0
+            ],
+            "land": [
+              0.2,
+              4.0
+            ],
+            "sub": null
+          },
+          "warhead": {
+            "1": "AGM-114A8kg/17.6lbShapedCharge",
+            "HighExplosiveAnti-Tank(HEAT)ShapedCharge": "8"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "无人机"
+    },
+    {
+      "uid": "B17",
+      "side": "blue",
+      "role": "uav",
+      "kind": "aircraft",
+      "platform_id": 545,
+      "name": "RQ-1B Predator UAV",
+      "type": "无人机(UAV)",
+      "target_class": "uav",
+      "nation": "UnitedStates",
+      "dp": 3,
+      "year": 2001,
+      "maneuver_g": 1.0,
+      "maneuver_g_tactical": 3,
+      "rcs_em_m2": {
+        "front_dbsm": "-2.1dBsm",
+        "front_m2": 0.6166
+      },
+      "radar_max_nm": null,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 41.805,
+        "rel_y_nm": 0.459,
+        "alt_m": 4672.9
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 87,
+          "name": "RB 17 Hellfire [AGM-114F]",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.0,
+            "surface": 0.9,
+            "land": 0.9,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": null,
+            "surface": [
+              0.2,
+              4.0
+            ],
+            "land": [
+              0.2,
+              4.0
+            ],
+            "sub": null
+          },
+          "warhead": {
+            "1": "AGM-114A8kg/17.6lbShapedCharge",
+            "HighExplosiveAnti-Tank(HEAT)ShapedCharge": "8"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "无人机"
+    },
+    {
+      "uid": "B18",
+      "side": "blue",
+      "role": "uav",
+      "kind": "aircraft",
+      "platform_id": 545,
+      "name": "RQ-1B Predator UAV",
+      "type": "无人机(UAV)",
+      "target_class": "uav",
+      "nation": "UnitedStates",
+      "dp": 3,
+      "year": 2001,
+      "maneuver_g": 1.0,
+      "maneuver_g_tactical": 3,
+      "rcs_em_m2": {
+        "front_dbsm": "-2.1dBsm",
+        "front_m2": 0.6166
+      },
+      "radar_max_nm": null,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 41.587,
+        "rel_y_nm": -0.934,
+        "alt_m": 4383.4
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 87,
+          "name": "RB 17 Hellfire [AGM-114F]",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.0,
+            "surface": 0.9,
+            "land": 0.9,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": null,
+            "surface": [
+              0.2,
+              4.0
+            ],
+            "land": [
+              0.2,
+              4.0
+            ],
+            "sub": null
+          },
+          "warhead": {
+            "1": "AGM-114A8kg/17.6lbShapedCharge",
+            "HighExplosiveAnti-Tank(HEAT)ShapedCharge": "8"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "无人机"
+    },
+    {
+      "uid": "B19",
+      "side": "blue",
+      "role": "uav",
+      "kind": "aircraft",
+      "platform_id": 545,
+      "name": "RQ-1B Predator UAV",
+      "type": "无人机(UAV)",
+      "target_class": "uav",
+      "nation": "UnitedStates",
+      "dp": 3,
+      "year": 2001,
+      "maneuver_g": 1.0,
+      "maneuver_g_tactical": 3,
+      "rcs_em_m2": {
+        "front_dbsm": "-2.1dBsm",
+        "front_m2": 0.6166
+      },
+      "radar_max_nm": null,
+      "esm_max_nm": null,
+      "ir_max_nm": null,
+      "sonar_max_nm": null,
+      "visual_max_nm": null,
+      "pos": {
+        "rel_x_nm": 41.168,
+        "rel_y_nm": 0.41,
+        "alt_m": 4219.1
+      },
+      "jamming": "none",
+      "aspect": "head_on",
+      "loadout": [
+        {
+          "weapon_id": 87,
+          "name": "RB 17 Hellfire [AGM-114F]",
+          "type": "制导武器",
+          "nation": "",
+          "hit": {
+            "air": 0.0,
+            "surface": 0.9,
+            "land": 0.9,
+            "sub": 0.0
+          },
+          "range_nm": {
+            "air": null,
+            "surface": [
+              0.2,
+              4.0
+            ],
+            "land": [
+              0.2,
+              4.0
+            ],
+            "sub": null
+          },
+          "warhead": {
+            "1": "AGM-114A8kg/17.6lbShapedCharge",
+            "HighExplosiveAnti-Tank(HEAT)ShapedCharge": "8"
+          },
+          "resolved": true,
+          "qty": 2,
+          "role": "self_defense",
+          "note": "库内命中武器；挂载数量为示例重建"
+        }
+      ],
+      "support_stores": [],
+      "mounts": [],
+      "resolved": true,
+      "_group": "无人机"
+    }
+  ],
+  "matrix_ref": {
+    "pv_file": "P_V/scene1_4_50_20_pv.json",
+    "row_uid_order": [
+      "R01",
+      "R02",
+      "R03",
+      "R04",
+      "R05",
+      "R06",
+      "R07",
+      "R08",
+      "R09",
+      "R10",
+      "R11",
+      "R12",
+      "R13",
+      "R14",
+      "R15",
+      "R16",
+      "R17",
+      "R18",
+      "R19",
+      "R20",
+      "R21",
+      "R22",
+      "R23",
+      "R24",
+      "R25",
+      "R26",
+      "R27",
+      "R28",
+      "R29",
+      "R30",
+      "R31",
+      "R32",
+      "R33",
+      "R34",
+      "R35",
+      "R36",
+      "R37",
+      "R38",
+      "R39",
+      "R40",
+      "R41",
+      "R42",
+      "R43",
+      "R44",
+      "R45",
+      "R46",
+      "R47",
+      "R48",
+      "R49",
+      "R50"
+    ],
+    "col_uid_order": [
+      "B01",
+      "B02",
+      "B03",
+      "B04",
+      "B05",
+      "B06",
+      "B07",
+      "B08",
+      "B09",
+      "B10",
+      "B11",
+      "B12",
+      "B13",
+      "B14",
+      "B15",
+      "B16",
+      "B17",
+      "B18",
+      "B19",
+      "B20"
+    ],
+    "direction": "P[i][j] = 第 i 个红方单位对第 j 个蓝方目标的单发命中概率；行=红方武器，列=蓝方目标，v 与列同序",
+    "long_tables": [
+      "P_V/P_long_scene1_4_50_20.csv",
+      "P_V/V_scene1_4_50_20.csv",
+      "P_V/P_scene1_4_50_20.csv"
+    ]
+  }
+}

@@ -1,0 +1,1265 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"/><title>scene1_4_50_20 场景想定报告</title><style>@page { size: A4; margin: 1.8cm 1.5cm; }
+body { font-family:'Microsoft YaHei','SimSun',sans-serif; color:#1f2937; }
+table { page-break-inside:auto; }
+tr { page-break-inside:avoid; }
+thead { display:table-header-group; }
+</style></head><body><h1 style="font-size:19pt;font-weight:bold;color:#16325c;text-align:center;margin:0 0 14pt">scene1_4_50_20 场景想定报告</h1>
+<p style="border-left:3px solid #2f5597;background:#f2f6fc;padding:7pt 10pt;margin:8pt 0;font-size:9.5pt;color:#33415c;line-height:1.5">&nbsp;&nbsp;本报告由 <code style="font-family:Consolas,monospace;font-size:9pt">scene1_4_50_20.json</code> 的 P/V 矩阵回推生成，遵循《场景文件规范 v2.0》第 3 节六小节结构。<br/>依据：装备参数库（型号/DP/RCS/探测距离/挂载）、《WTA 毁伤概率与价值公式》第 4–6 节、给定 P/V 矩阵。<br/>叙述层（年代、地域、背景、任务、环境）不在矩阵内，属按编成代次与交战结构做的示例重建；<br/>数量、阵位、挂载数量、战术机动档位同为示例重建。装备型号与国别字段仅为装备库条目属性，不代表本想定的阵营归属。<br/>可唯一还原项、口径判定、闭环偏差与待标定项见 <code style="font-family:Consolas,monospace;font-size:9pt">P_V/闭环校验_scene1_4_50_20.md</code> 与卡片 <code style="font-family:Consolas,monospace;font-size:9pt">provenance</code>。</p>
+<h2 style="font-size:15pt;font-weight:bold;color:#1f3864;margin:16pt 0 8pt;padding-bottom:4pt;border-bottom:1px solid #c9d1dd">一、场景基本信息</h2>
+<table style="width:100%;border-collapse:collapse;font-size:10.0pt;margin:8pt 0">
+<thead><tr>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:10.0pt">项目</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:10.0pt">内容</th>
+</tr></thead><tbody>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">场景编号</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">scene1_4_50_20</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">原始场景文件</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">scene1_4_50_20.json（仅提供 P/V 矩阵，未提供 .scen 原文）</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">场景年代</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">2010 年代（按编成平台服役年份 1987–2006 推断，示例重建）</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">地域</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">西太平洋某开阔海域（示例重建）</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">历史时期</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">信息化条件下海上局部封锁与反封锁（示例重建）</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">红方定位</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">红方（防守方），依托海上编队组织纵深防空</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">蓝方定位</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">蓝方（进攻方），多批次空中突击编队</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">原文阵营写法</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">交战时间</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">交战海域/地点</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">某开阔海域，方圆约 97nm 的对抗空域（示例重建）</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">海况</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">天气</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">环境备注</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">缺省取 1.00，不进入概率因子链</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">复杂度/难度</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">数据库版本</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">—</td>
+</tr>
+</tbody></table>
+<h2 style="font-size:15pt;font-weight:bold;color:#1f3864;margin:16pt 0 8pt;padding-bottom:4pt;border-bottom:1px solid #c9d1dd">二、战争背景</h2>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify">本想定脱胎于一次海上防空对抗：蓝方以空中突击编队试图突破红方海上编队的防空圈，红方依托舰载超远程拦截、远程截击与中距拦截三层兵力组织防御。改编方向是把一次典型的「预警指挥引导 + 电子战压制 + 多波次突击」突防行动，压缩为一份可直接进入 WTA 分配阶段的单发命中概率矩阵与目标价值向量：矩阵 50 行对应红方可用的拦截火力通道，20 列对应蓝方空中目标。</p>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify">由矩阵回读可见，红方火力被组织为 25/20/5 三段，分别对应中距、远程与超远程三个拦截层；蓝方目标按价值与可毁伤性呈 1/1/1/6/11 五类梯队，从远距预警指挥节点到前出无人机群依次展开。随目标价值由高到低（98 → 93 → 68 → 49 → 21），主力中距拦截层的单发命中概率整体由 0.03 升至 0.47（0.03 → 0.28 → 0.17 → 0.25 → 0.47），呈显著负相关；个别相邻档位存在交错，属输入噪声与档位标定所致，与手册 5.5「高价值节点配强防护、配置在更远距离、更难被拦截」的一致性约定相符。</p>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify">需说明：以上背景、年代与地域均由矩阵结构与装备库代次重建，不是原始 CMO 场景正文的译写；原始 .scen 私有压缩块中的标题、正文与溯源字段不可得。</p>
+<h2 style="font-size:15pt;font-weight:bold;color:#1f3864;margin:16pt 0 8pt;padding-bottom:4pt;border-bottom:1px solid #c9d1dd">三、双方任务目标</h2>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify"><strong>红方（防守方）</strong>：以中距、远程、超远程三层拦截兵力守住海上编队防空圈，优先压制蓝方远距预警指挥与电子战节点，逐层消耗前出无人机与护航战斗机，阻止轰炸机与多用途战斗机进入有效投射距离。</p>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify"><strong>蓝方（进攻方）</strong>：以预警指挥机与电子战飞机提供探测、引导与压制，以前出无人机群消耗红方拦截弹药、以多用途战斗机护航，掩护轰炸机群突防，达成对红方海上编队的打击。</p>
+<h2 style="font-size:15pt;font-weight:bold;color:#1f3864;margin:16pt 0 8pt;padding-bottom:4pt;border-bottom:1px solid #c9d1dd">四、双方编成与装备参数</h2>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify">本想定共编入 70 个单位，其中红方 50 个、蓝方 20 个。型号、DP、年份、RCS 前向值、雷达/ESM 作用距离与武器命中率/射程取自装备参数库（按 <code style="font-family:Consolas,monospace;font-size:9pt">platform_id</code> / <code style="font-family:Consolas,monospace;font-size:9pt">weapon_id</code> 分类别查库），阵位（x/y/高度）、单位数量、挂载数量与战术机动过载为示例重建；编入挂载仅保留库内命中（resolved）武器。舰艇无机动 g / 雷达 / ESM 值填「—」。逐单位阵位见第五节部署表。</p>
+<h3 style="font-size:12pt;font-weight:bold;color:#1f3864;margin:12pt 0 6pt">4.1 红方编成（按机型 / 舰型分组）</h3>
+<table style="width:100%;border-collapse:collapse;font-size:7.5pt;margin:8pt 0">
+<thead><tr>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">编号</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">型号</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">国别</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">DP</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">年份</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">机动 g</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">RCS 前向(m²)</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">雷达(nm)</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">ESM(nm)</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">阵位(x/y/高度)</th>
+</tr></thead><tbody>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R01–R25（25）</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">UnitedStates</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2003</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.9</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.57</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">120</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">x=[0.5,3.4]，y=[-5.4,5.3]，h=[8172,10421]</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R26–R45（20）</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">UnitedStates</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">10</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2004</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9.12</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">180</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">x=[-19.3,-17.0]，y=[-6.0,5.6]，h=[9092,11450]</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R46–R50（5）</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">CG 56 San Jacinto [Ticonderoga Baseline 2]</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">UnitedStates</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1270</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1989</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">933.25</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">x=[-37.5,-35.1]，y=[-3.0,2.3]，h=[0,0]</td>
+</tr>
+</tbody></table>
+<h3 style="font-size:12pt;font-weight:bold;color:#1f3864;margin:12pt 0 6pt">4.2 蓝方编成（按机型分组）</h3>
+<table style="width:100%;border-collapse:collapse;font-size:7.5pt;margin:8pt 0">
+<thead><tr>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">编号</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">型号</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">国别</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">DP</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">年份</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">机动 g</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">RCS 前向(m²)</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">雷达(nm)</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">ESM(nm)</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">阵位(x/y/高度)</th>
+</tr></thead><tbody>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B02（1）</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">Sentry AEW.1 [E-3D]</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">UnitedKingdom</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">20</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1991</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1 / 战术 2g</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">75.86</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">350</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">x=[59.1,59.1]，y=[-0.6,-0.6]，h≈9193</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B20（1）</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">EA-6B Prowler ICAP II Blk 82</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">UnitedStates</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">10</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1987</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.5 / 战术 3g</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">6.61</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">150</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">x=[44.5,44.5]，y=[-3.5,-3.5]，h≈7715</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B11（1）</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B-1B Lancer</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">UnitedStates</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">20</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2006</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2 / 战术 3g</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">16.60</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">160</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">x=[47.1,47.1]，y=[2.4,2.4]，h≈9704</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B03/B04/B07/B12/B15/B16（6）</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-15E Strike Eagle</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">UnitedStates</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">10</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2001</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4 / 战术 7g</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">5.75</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">120</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">x=[43.3,44.4]，y=[3.1,4.7]，h≈7524</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B01/B05/B06/B08/B09/B10…（11）</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">RQ-1B Predator UAV</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">UnitedStates</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">3</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2001</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1 / 战术 3g</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0.62</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">x=[40.4,41.9]，y=[-1.0,0.9]，h≈4479</td>
+</tr>
+</tbody></table>
+<h3 style="font-size:12pt;font-weight:bold;color:#1f3864;margin:12pt 0 6pt">4.3 挂载表</h3>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify">命中率与射程按空 / 海 / 陆 / 潜四类目标分列，无对应值填「—」；蓝方挂载为任务/自卫挂载，不参与本 P 矩阵计算（矩阵行仅含红方火力）。</p>
+<table style="width:100%;border-collapse:collapse;font-size:7.5pt;margin:8pt 0">
+<thead><tr>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">单位</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">武器编号</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">武器名称</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">类型</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">命中-空</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">命中-海</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">命中-陆</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">命中-潜</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">射程-空(nm)</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">射程-海(nm)</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">射程-陆(nm)</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">射程-潜(nm)</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">数量</th>
+</tr></thead><tbody>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R01–R25</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">52</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">AIM-120C-6 AMRAAM P3I.2</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">制导武器</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">95%</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1.1–56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R26–R45</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1398</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">AIM-54C Phoenix</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">制导武器</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">85%</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2–99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R46–R50</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">906</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">RIM-161A SM-3 NTW Blk I</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">制导武器</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">85%</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4–200</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">8</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B02</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—（未编入交战武器）</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B20</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">619</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">AGM-88B HARM Blk IIIB</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">制导武器</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">90%</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">90%</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1–70</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1–70</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B11</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">351</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">AGM-86C CALCM Blk IA</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">制导武器</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">95%</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">25–500</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B03/B04/B07/B12/B15/B16</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">52</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">AIM-120C-6 AMRAAM P3I.2</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">制导武器</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">95%</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1.1–56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B01/B05/B06/B08/B09/B10…</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">87</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">RB 17 Hellfire [AGM-114F]</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">制导武器</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">90%</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">90%</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0.2–4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0.2–4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2</td>
+</tr>
+</tbody></table>
+<h3 style="font-size:12pt;font-weight:bold;color:#1f3864;margin:12pt 0 6pt">4.4 按矩阵分组回查装备库后的三层拦截参数（示例重建）</h3>
+<table style="width:100%;border-collapse:collapse;font-size:7.5pt;margin:8pt 0">
+<thead><tr>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">组</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">拦截层</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">uid 范围</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">数量</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">平台</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">武器</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">对空命中率</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">对空射程(nm)</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">单平台挂载</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">阵位 x 带(nm)</th>
+</tr></thead><tbody>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">A</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">中距拦截层</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R01–R25</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">25</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">AIM-120C-6 AMRAAM P3I.2</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">95%</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1.1–56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1～3</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">远程拦截层</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R26–R45</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">20</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">AIM-54C Phoenix</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">85%</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2–99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-19～-17</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">C</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">超远程舰载拦截层</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R46–R50</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">CG 56 San Jacinto [Ticonderoga Baseline 2]</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">RIM-161A SM-3 NTW Blk I</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">85%</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4–200</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">8</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-37～-35</td>
+</tr>
+</tbody></table>
+<h2 style="font-size:15pt;font-weight:bold;color:#1f3864;margin:16pt 0 8pt;padding-bottom:4pt;border-bottom:1px solid #c9d1dd">五、战场部署与距离分布</h2>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify">坐标系：x、y 单位海里（nm），高度单位米；单位间距离取平面欧氏距离（海里），红方三层拦截兵力沿 x 轴由 -37nm 至 3nm 分纵深展开，蓝方五类空中目标位于 x≈40～59nm 一侧、按由近及远的距离带梯次展开。交战距离带由手册 6.1 从 P 矩阵反解：以中距拦截层（Rmax=56.7nm）为基准，五类目标的等效距离依次为 T2 39.1nm、T3 41.7nm、T5 42.7nm、T4 45.3nm、T1 57.4nm；射程覆盖按各层武器最大射程 Rmax 与平面距离判定，超射程即门控为不可交战。</p>
+<table style="width:100%;border-collapse:collapse;font-size:7.5pt;margin:8pt 0">
+<thead><tr>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">单位</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">阵营</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">型号</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">x(nm)</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">y(nm)</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">高度(m)</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">对空射程(nm)</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">对海射程(nm)</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:7.5pt">对陆射程(nm)</th>
+</tr></thead><tbody>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R01</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1.6</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-4.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">10421</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R02</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1.2</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">10199</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R03</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-5.3</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">10214</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R04</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.6</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9830</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R05</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-1.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9875</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R06</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">5.3</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">8767</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R07</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-5.2</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">8172</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R08</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.3</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">3.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">8688</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R09</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-1.3</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">8835</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R10</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-0.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">8973</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R11</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1.1</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9188</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R12</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-4.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9005</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R13</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-4.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">8667</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R14</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-4.9</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9615</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R15</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-2.2</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9514</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R16</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.1</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-4.9</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9887</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R17</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">8886</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R18</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-2.8</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9434</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R19</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-1.3</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">8871</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R20</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.8</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-4.6</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">8372</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R21</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">3.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9389</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R22</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">3.1</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">3.8</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">10291</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R23</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.1</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-5.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9420</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R24</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">3.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-3.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9355</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R25</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-16C Blk 30 Falcon</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.1</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">8699</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R26</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-18.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-4.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9092</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R27</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-18.8</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">5.6</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9491</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R28</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-19.1</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.1</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9520</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R29</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-18.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.8</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9863</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R30</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-19.3</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9263</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R31</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-18.6</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0.8</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9793</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R32</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-18.9</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">3.2</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">10355</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R33</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-18.9</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">3.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9706</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R34</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-18.9</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-3.2</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">11202</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R35</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-18.3</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-0.3</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9430</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R36</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-18.1</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">5.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">10912</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R37</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-17.9</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-2.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">10543</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R38</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-17.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-6.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9673</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R39</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-17.6</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-0.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">10487</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R40</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-18.2</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-5.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9474</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R41</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-17.3</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">3.9</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">10366</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R42</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-18.1</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-4.8</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9612</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R43</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-17.3</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">5.2</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">11450</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R44</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-17.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">11296</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R45</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-14D Tomcat</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-17.6</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">1.2</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9591</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R46</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">CG 56 San Jacinto [Ticonderoga Baseline 2]</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-37.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-0.3</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">200.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R47</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">CG 56 San Jacinto [Ticonderoga Baseline 2]</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-37.3</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">200.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R48</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">CG 56 San Jacinto [Ticonderoga Baseline 2]</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-35.6</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.3</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">200.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R49</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">CG 56 San Jacinto [Ticonderoga Baseline 2]</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-36.2</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-2.6</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">200.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">R50</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">红方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">CG 56 San Jacinto [Ticonderoga Baseline 2]</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-35.1</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-3.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">200.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B02</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">Sentry AEW.1 [E-3D]</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">59.1</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-0.6</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9193</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B20</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">EA-6B Prowler ICAP II Blk 82</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">44.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-3.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">7715</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">70.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">70.0</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B11</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B-1B Lancer</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">47.1</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">2.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">9704</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">500.0</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B03</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-15E Strike Eagle</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">43.6</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">7263</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B04</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-15E Strike Eagle</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">44.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">3.1</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">7681</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B07</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-15E Strike Eagle</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">43.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.3</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">7620</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B12</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-15E Strike Eagle</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">44.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">3.1</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">7330</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B15</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-15E Strike Eagle</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">44.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">3.6</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">7621</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B16</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">F-15E Strike Eagle</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">43.3</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">3.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">7627</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B01</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">RQ-1B Predator UAV</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">40.6</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4287</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B05</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">RQ-1B Predator UAV</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">40.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-0.8</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4499</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B06</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">RQ-1B Predator UAV</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">41.8</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-0.6</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4447</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B08</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">RQ-1B Predator UAV</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">40.9</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-1.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4468</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B09</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">RQ-1B Predator UAV</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">41.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0.1</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4428</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B10</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">RQ-1B Predator UAV</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">40.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-0.3</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4793</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B13</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">RQ-1B Predator UAV</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">40.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0.9</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4502</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B14</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">RQ-1B Predator UAV</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">41.9</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4572</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B17</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">RQ-1B Predator UAV</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">41.8</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0.5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4673</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B18</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">RQ-1B Predator UAV</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">41.6</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">-0.9</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4383</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">B19</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">蓝方</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">RQ-1B Predator UAV</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">41.2</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">0.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4219</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">—</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:7.5pt;vertical-align:top">4.0</td>
+</tr>
+</tbody></table>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify"><strong>编队统计</strong>（按上表坐标计算）</p>
+<table style="width:100%;border-collapse:collapse;font-size:10.0pt;margin:8pt 0">
+<thead><tr>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:10.0pt">项目</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:10.0pt">数值</th>
+</tr></thead><tbody>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">红方编队中心</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">(-9.87, -0.33) nm</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">蓝方编队中心</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">(43.31, 0.99) nm</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">双方编队间距</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">53.20 nm</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">红—蓝单位间距最小值</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">37.05 nm</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">红—蓝单位间距均值</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">53.38 nm</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">红—蓝单位间距最大值</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:10.0pt;vertical-align:top">96.55 nm</td>
+</tr>
+</tbody></table>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify">按最大射程判定的可达目标对数（单位×目标，共 1000 对）：</p>
+<table style="width:100%;border-collapse:collapse;font-size:9.0pt;margin:8pt 0">
+<thead><tr>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:9.0pt">拦截层</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:9.0pt">Rmax(nm)</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:9.0pt">T1 预警指挥机</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:9.0pt">T5 电子战飞机</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:9.0pt">T4 轰炸机</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:9.0pt">T3 多用途战斗机</th>
+<th style="border:1px solid #9aa7b8;background:#e8eef7;padding:3pt 4pt;font-weight:bold;text-align:left;font-size:9.0pt">T2 无人机</th>
+</tr></thead><tbody>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">A</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">56.7</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">8/25</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">25/25</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">25/25</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">150/150</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">275/275</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">B</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">99.4</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">20/20</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">20/20</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">20/20</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">120/120</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">220/220</td>
+</tr>
+<tr>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">C</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">200.0</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">5/5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">5/5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">5/5</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">30/30</td>
+<td style="border:1px solid #c9d1dd;padding:2pt 4pt;font-size:9.0pt;vertical-align:top">55/55</td>
+</tr>
+</tbody></table>
+<h2 style="font-size:15pt;font-weight:bold;color:#1f3864;margin:16pt 0 8pt;padding-bottom:4pt;border-bottom:1px solid #c9d1dd">六、对抗态势综述</h2>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify"><strong>1. 总体态势</strong></p>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify">2010 年代、西太平洋某开阔海域（示例重建）。红方以海上编队为核心布防，编队中心 (-9.9, -0.3) nm；蓝方空中突击编队自东侧进入，编队中心 (43.3, 1.0) nm，双方编队间距约 53.2 nm。红—蓝单位间距 37.1～96.5 nm、均值 53.4 nm，整体处于中距弹（56.7nm）覆盖边缘至超远程弹（200nm）舒适区之间，属于「中距拦截为主、远程与超远程补盲」的交战距离带。</p>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify"><strong>2. 红方防守部署</strong></p>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify">红方共 50 个拦截单位，分三层：A 层 25 架 F-16C Blk 30 Falcon（飞行高度 8000～10500m）挂 AIM-120C-6 AMRAAM P3I.2，对空命中率 95%、射程 1.1–56.7nm；B 层 20 架 F-14D Tomcat（飞行高度 9000～11500m）挂 AIM-54C Phoenix，对空命中率 85%、射程 2–99.4nm；C 层 5 艘 CG 56 San Jacinto [Ticonderoga Baseline 2]（水面）挂 RIM-161A SM-3 NTW Blk I，对空命中率 85%、射程 4–200nm。A 层前出占据 x≈1～3nm 拦截线，B 层在 x≈-19～-17nm 提供纵深，C 层在 x≈-37～-35nm 提供远界补盲。防守任务为逐层消耗蓝方突击编队，并用超远程弹优先打击远距预警指挥节点。</p>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify"><strong>3. 蓝方进攻部署</strong></p>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify">蓝方共 20 个空中目标，按价值由高到低分五类：预警指挥机 1 个（Sentry AEW.1 [E-3D]，DP 20，h≈9000m，v 均值 98.0）、电子战飞机 1 个（EA-6B Prowler ICAP II Blk 82，DP 10，h≈8000m，v 均值 93.1）、轰炸机 1 个（B-1B Lancer，DP 20，h≈10000m，v 均值 67.5）、多用途战斗机 6 个（F-15E Strike Eagle，DP 10，h≈7500m，v 均值 49.1）、无人机 11 个（RQ-1B Predator UAV，DP 3，h≈4500m，v 均值 21.0）。有 1 个目标（B20）被全部 50 个红方火力通道覆盖，可作火力覆盖基准点。进攻任务为以预警/电子战节点引导、无人机群前出消耗、战斗机护航、轰炸机突防。</p>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify"><strong>4. 距离与接战关系</strong></p>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify">按手册 6.1 由 P 反解的五类等效距离带（相对 A 层拦截线）为 T2≈39.1nm、T3≈41.7nm、T5≈42.7nm、T4≈45.3nm、T1≈57.4nm，整体呈低价值目标突前、高价值节点靠后的梯次配置（相邻档位略有交错）；以最大射程判定：A 层（56.7nm）主要覆盖近距目标，对远距高价值节点进入射程衰减末段或边缘；B 层（99.4nm）与 C 层（200nm）提供纵深补盲。给定矩阵的分块适配系数 α 在 0.12–1.29 之间，反映发射包络与武器—目标适配的合并效应，属 C 层待标定项，详见闭环校验文件。</p>
+<p style="font-size:10.5pt;line-height:1.55;margin:6pt 0;text-align:justify">交战阶段可划分为：① 蓝方预警/电子战节点前出建立引导与压制 → ② 无人机群进入 A 层拦截线，触发中距拦截 → ③ 战斗机/轰炸机群进入 B 层与 C 层射界，形成中远程火力交换 → ④ 残余突防兵力逼近红方海上编队，由 C 层舰载拦截与近距屏护收尾。该顺序与矩阵中「高价值远距目标仅由超远程层有效覆盖、低价值近距目标主要由中距层覆盖」的结构一致。</p>
+<p style="border-left:3px solid #2f5597;background:#f2f6fc;padding:7pt 10pt;margin:8pt 0;font-size:9.5pt;color:#33415c;line-height:1.5">&nbsp;&nbsp;数值层说明：给定 P 矩阵含分块标定与独立噪声，按卡片参数正算需引入分块适配系数 α 才能闭合；非零可解释格逐格 RMSE 约 0.0388，477 个零格中仅 11 个可由射程门控解释，其余属火力通道/弹药配额掩膜，不可由卡片参数唯一反推。详见 <code style="font-family:Consolas,monospace;font-size:9pt">P_V/闭环校验_scene1_4_50_20.md</code>。</p></body></html>

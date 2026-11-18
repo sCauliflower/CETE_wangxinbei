@@ -1,0 +1,211 @@
+{
+  "scenario_id": "scene2_1_400_300",
+  "dim": [
+    400,
+    300
+  ],
+  "row_bounds": [
+    200,
+    360
+  ],
+  "row_change_points": [
+    200,
+    360
+  ],
+  "red_groups": [
+    {
+      "key": "A",
+      "uids": "R01-R200",
+      "n": 200,
+      "platform": "F-16C Blk 30 Falcon",
+      "weapon": "AIM-120C-6 AMRAAM P3I.2",
+      "Pk0": 0.95,
+      "Rmax_nm": 56.7
+    },
+    {
+      "key": "B",
+      "uids": "R201-R360",
+      "n": 160,
+      "platform": "F-14D Tomcat",
+      "weapon": "AIM-54C Phoenix",
+      "Pk0": 0.85,
+      "Rmax_nm": 99.4
+    },
+    {
+      "key": "C",
+      "uids": "R361-R400",
+      "n": 40,
+      "platform": "CG 56 San Jacinto [Ticonderoga Baseline 2]",
+      "weapon": "RIM-161A SM-3 NTW Blk I",
+      "Pk0": 0.85,
+      "Rmax_nm": 200.0
+    }
+  ],
+  "blue_classes": [
+    {
+      "key": "T1",
+      "n": 28,
+      "label": "预警指挥机",
+      "platform": "Sentry AEW.1 [E-3D]",
+      "v_mean": 101.661,
+      "p_mean_A": 0.0357,
+      "d_bar_nm": 57.32,
+      "flat": false,
+      "z_hat": 0.9166,
+      "z_theory": 1.0
+    },
+    {
+      "key": "T5",
+      "n": 47,
+      "label": "电子战飞机",
+      "platform": "EA-6B Prowler ICAP II Blk 82",
+      "v_mean": 85.157,
+      "p_mean_A": 0.2735,
+      "d_bar_nm": 42.81,
+      "flat": false,
+      "z_hat": 0.7516,
+      "z_theory": 0.9257
+    },
+    {
+      "key": "T4",
+      "n": 45,
+      "label": "轰炸机",
+      "platform": "B-1B Lancer",
+      "v_mean": 69.854,
+      "p_mean_A": 0.1781,
+      "d_bar_nm": 45.18,
+      "flat": false,
+      "z_hat": 0.5985,
+      "z_theory": 0.8875
+    },
+    {
+      "key": "T3",
+      "n": 60,
+      "label": "多用途战斗机",
+      "platform": "F-15E Strike Eagle",
+      "v_mean": 49.398,
+      "p_mean_A": 0.3571,
+      "d_bar_nm": 38.19,
+      "flat": false,
+      "z_hat": 0.394,
+      "z_theory": 0.7193
+    },
+    {
+      "key": "T2",
+      "n": 120,
+      "label": "无人机",
+      "platform": "RQ-1B Predator UAV",
+      "v_mean": 19.925,
+      "p_mean_A": 0.6689,
+      "d_bar_nm": 34.64,
+      "flat": false,
+      "z_hat": 0.0992,
+      "z_theory": 0.6031
+    }
+  ],
+  "grouping": {
+    "dp_segment_cost": 0.86824,
+    "kmeans_sse": 10.135,
+    "agreement": 0.9967
+  },
+  "full_coverage_cols": [
+    "B06",
+    "B10",
+    "B14",
+    "B22",
+    "B27",
+    "B39",
+    "B84",
+    "B87",
+    "B111",
+    "B118",
+    "B141",
+    "B182",
+    "B184",
+    "B188",
+    "B199",
+    "B203",
+    "B205",
+    "B215",
+    "B237",
+    "B239",
+    "B250",
+    "B252",
+    "B253",
+    "B264",
+    "B273",
+    "B275",
+    "B287",
+    "B296",
+    "B297"
+  ],
+  "calibration": {
+    "mode": "hit_probability",
+    "scan": {
+      "hit": [
+        62555,
+        64834
+      ],
+      "damage": [
+        20361,
+        64834
+      ]
+    },
+    "rmse": 0.04449,
+    "rmse_valid": 0.06099,
+    "block_mean_max_err": 0.0,
+    "block_mean_max_err_full": 0.028965,
+    "p_exceed": 2279,
+    "n_valid": 63342,
+    "zero_cells": 55166,
+    "zero_by_gate": 2956,
+    "obs_conflict": 1492,
+    "alpha": {
+      "A|T1": 0.7394,
+      "A|T5": 1.0542,
+      "A|T4": 0.9798,
+      "A|T3": 1.0376,
+      "A|T2": 1.0147,
+      "B|T1": 0.6245,
+      "B|T5": 1.2187,
+      "B|T4": 1.1928,
+      "B|T3": 1.25,
+      "B|T2": 0.5003,
+      "C|T1": 0.839,
+      "C|T5": 0.7947,
+      "C|T4": 0.3882,
+      "C|T3": 0.4375,
+      "C|T2": 0.1753
+    },
+    "alpha_min": 0.1753,
+    "alpha_max": 1.25,
+    "value_regression": {
+      "a": -96.39,
+      "b": 195.03,
+      "r2": 0.9708,
+      "v_min": 10,
+      "v_max": 110
+    }
+  },
+  "distance_stats": {
+    "red_center": [
+      -9.8,
+      -0.12
+    ],
+    "blue_center": [
+      42.36,
+      0.41
+    ],
+    "center_gap_nm": 52.16,
+    "min": 32.34,
+    "mean": 52.34,
+    "max": 97.53
+  },
+  "nonzero_cells": 64834,
+  "files": {
+    "card": "scene2_1_400_300_card.json",
+    "report_md": "scene2_1_400_300_场景想定报告.md",
+    "report_html": "scene2_1_400_300_场景想定报告.html",
+    "check": "P_V/闭环校验_scene2_1_400_300.md"
+  }
+}
